@@ -1,7 +1,7 @@
-name = "Eat Your Veggies! (Praash)"
+name = "Eat ALL Your Veggies! (Praash)"
 description = "Diet restriction minigame."
 author = "Joeshmocoolstuff, azukun, Praash, Mrklli"
-version = "1.8.0"
+version = "1.8.1"
 api_version = 10
 
 dont_starve_compatible = false
