@@ -3,36 +3,16 @@ local Image = require "widgets/image"
 local Widget = require "widgets/widget"
 local UIAnim = require "widgets/uianim"
 
+
 require "HelpStr"
 
 local ItemTile = Class(Widget, function(self, invitem)
 	Widget._ctor(self, "ItemTile")
 	self.item = invitem
 
-	local DEFAULT_ATLAS = "images/inventoryimages.xml"
-	local name = tostring(invitem)
-	local atlas = DEFAULT_ATLAS--softresolvefilepath("images/inventoryimages/"..name..".xml") or softresolvefilepath("images/"..name..".xml") or DEFAULT_ATLAS	
-	if name == "potato" or name == "potato_cooked" or
-		name == "tomato" or name == "tomato_cooked" or
-		name == "onion" or name == "onion_cooked" or
-		name == "garlic" or name == "garlic_cooked" or
-		name == "pepper" or name == "pepper_cooked" or
-		name == "asparagus" or name == "asparagus_cooked" or
-		name == "fishmeat_small" or name == "fishmeat_small_cooked" or
-		name == "potatotornado" or name == "mashedpotatoes" or name == "asparagussoup" or name == "ceviche" or name == "salsa" or name == "pepperpopper" then
-		atlas = "images/inventoryimages1.xml"
-	end
-	if name == "vegstinger" or name == "surfnturf" then
-		atlas = "images/inventoryimages2.xml"
-	end
-	if name == "potato" or name == "potato_cooked" or
-		name == "tomato" or name == "tomato_cooked" or
-		name == "onion" or name == "onion_cooked" or
-		name == "garlic" or name == "garlic_cooked" then
-		name = "quagmire_" .. name
-	end
-	local image = name .. ".tex"
-		
+	local image = invitem .. ".tex"
+
+	local atlas = GetInventoryItemAtlas(image, true)
 
 	self.image = self:AddChild(Image(atlas, image))
 end)
