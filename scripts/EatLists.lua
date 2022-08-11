@@ -224,7 +224,6 @@ allFood =
 	moon_cap_cooked = true,
 	wobster_sheller_dead = true,
 	wobster_sheller_dead_cooked = true,
-	dustmeringue = true,
 	bananajuice = true,
 	frozenbananadaiquiri = true,
 	shroomcake = true,
@@ -601,7 +600,6 @@ warlyVeggies =
 
 wurtCrockpotNew =
 {
-	"dustmeringue",
 	"bananajuice",
 	"frozenbananadaiquiri",
 	"shroomcake",
