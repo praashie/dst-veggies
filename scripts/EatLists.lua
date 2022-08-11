@@ -663,3 +663,90 @@ wxFood =
 {
 	"gears",
 }
+
+--new foods. Hacked together, should be refactored completely.
+
+warlyMeats =
+{
+	"bonesoup",
+	"frogfishbowl",
+	"monstertartare",
+	"moqueca",
+}
+
+
+warlyVeggies =
+{
+	"gazpacho",
+	"freshfruitcrepes",
+	"glowberrymousse",
+	"nightmarepie",
+	"dragonchilisalad",
+	"potatosouffle",
+	"voltgoatjelly",
+}
+
+
+wurtCrockpotNew =
+{
+	"dustmeringue",
+	"bananajuice",
+	"frozenbananadaiquiri",
+	"shroomcake",
+	"sweettea",
+	"figatoni",
+}
+
+ConcatArrays(wurtCrockpot, wurtCrockpotNew)
+
+
+wigfridCrockpotNew =
+{
+	"barnaclinguine",
+	"barnaclesushi",
+	"barnaclepita",
+	"meatysalad",
+	"bunnystew",
+	"californiaroll",
+	"leafymeatsouffle",
+	"leafloaf",
+	"seafoodgumbo",
+	"barnaclestuffedfishhead",
+	"leafymeatburger",
+	"frognewton",
+	"figkabab",
+	"koalefig_trunk",
+	"lobsterbisque",
+	"lobsterdinner",
+}
+
+ConcatArrays(wigfridCrockpot, wigfridCrockpotNew)
+
+
+wigfridFoodNew =
+{
+	"wobster_sheller_dead",
+	"wobster_sheller_dead_cooked",
+	"barnacle",
+	"barnacle_cooked",
+	"batnose",
+	"batnose_cooked",
+}
+
+ConcatArrays(wigfridFood, wigfridCrockpotNew)
+
+
+wurtFoodNew =
+{
+	"kelp",
+	"kelp_cooked",
+	"moon_cap",
+	"moon_cap_cooked",
+	"fig",
+	"fig_cooked",
+}
+
+ConcatArrays(wurtFood, wurtFoodNew)
+
+ConcatArrays(crockpotFood, wigfridCrockpotNew, wurtCrockpotNew)
+ConcatArrays(allFoods, wigfridFoodNew, wurtFoodNew)
