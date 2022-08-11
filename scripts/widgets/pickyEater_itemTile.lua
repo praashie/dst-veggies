@@ -10,9 +10,14 @@ local ItemTile = Class(Widget, function(self, invitem)
 	Widget._ctor(self, "ItemTile")
 	self.item = invitem
 
-	local image = invitem .. ".tex"
+	local image_name = tostring(invitem)
 
-	local atlas = GetInventoryItemAtlas(image, true)
+	if image_name == "tomato" or image_name == "onion" or image_name == "tomato_cooked" or image_name == "onion_cooked" then
+		image_name = "quagmire_" .. image_name
+	end
+
+	local image = image_name .. ".tex"
+	local atlas = GetInventoryItemAtlas(image, false)
 
 	self.image = self:AddChild(Image(atlas, image))
 end)
