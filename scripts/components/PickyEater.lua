@@ -13,7 +13,11 @@ end
 
 local function Numerize(array)
 	for i,food in ipairs(array) do
-		array[i] = orderedFood[food]
+		local food_net_index = orderedFood[food]
+		if food_net_index == nil then
+			print("[PickyEater] ERROR: could not numerize food "..food)
+		end
+		array[i] = food_net_index
 	end
 	return array
 end
