@@ -48,4 +48,12 @@ helpstrings=
 	turkeydinner = "turkey dinner\n\nRequires 2 drumsticks, 0.5 meats, 0.5 veggies or fruits.",	
 	unagi = "unagi\n\nRequires 1 eel, 1 lichen.",	
 	waffles = "waffles\n\nRequires 1 butter, 1 egg, 1 berry.",	
+	potatotornado = "fancy spiralled tubers\n\nRequires 1 potato, 1 twig (max 2). Excludes meats.",	
+	mashedpotatoes = "creamy potato puree\n\nRequires 2 potatoes, 1 garlic. Excludes meats, twigs.",	
+	asparagussoup = "asparagus soup\n\nRequires 1 asparagus, 1.5 veggies. Excludes meats, twigs.",	
+	vegstinger = "spicy vegetable stinger\n\nRequires 1 tomato/asparagus, 1.5 veggies, ice.",	
+	ceviche = "ceviche\n\nRequires 2 fish, 1 ice. Excludes twigs, eggs.",	
+	salsa = "salsa fresca\n\nRequires 1 tomato, 1 onion. Excludes meats, eggs, twigs.",	
+	pepperpopper = "stuffed pepper poppers\n\nRequires 1 pepper, meats <= 1.5. Excludes twigs.",		
+	surfnturf = "surf 'n' turf\n\nRequires 1.5 fish and 2.5 meat.",
 }

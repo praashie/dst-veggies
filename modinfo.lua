@@ -1,7 +1,7 @@
-name = "Eat Your Veggies!"
+name = "Eat Your Veggies! (fix)"
 description = "Diet restriction minigame."
 author = "Joeshmocoolstuff" 
-version = "1.5"
+version = "1.7.1"
 api_version = 10
 
 dont_starve_compatible = false

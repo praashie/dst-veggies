@@ -238,6 +238,10 @@ function PickyEater:ResetPlayerTable()
 			if self.caves % 2 == 0 then
 				table.insert(tempFoodList,"unagi")
 			end
+		elseif self.inst.prefab == "wurt" then
+			for k,v in pairs(wurtCrockpot) do
+				table.insert(tempFoodList,v)
+			end
 		else
 			for k,v in pairs(crockpotFood) do
 				table.insert(tempFoodList,v)
@@ -285,6 +289,13 @@ function PickyEater:ResetPlayerTable()
 					table.insert(tempFoodList,v)
 				end
 			end			
+		elseif self.inst.prefab == "wurt" then
+			for k,v in pairs(wurtFood) do
+				table.insert(tempFoodList,v)
+			end
+			for k,v in pairs(wurtCrockpot) do
+				table.insert(tempFoodList,v)
+			end
 		else
 			for k,v in pairs(allFoods) do
 				table.insert(tempFoodList,v)
