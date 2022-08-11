@@ -100,37 +100,37 @@ local PickyEater = Class(function(self, inst)
 	self.caves = default_caves
 	self.reset = false
 	self.Reset = false
-	
-	self.net_menu = net_bytearray(self.inst.GUID, "menu", "menudirty" ) 
+
+	self.net_menu = net_bytearray(self.inst.GUID, "menu", "menudirty" )
 	self.net_progress = net_smallbytearray(self.inst.GUID, "progress", "progressdirty" )
 	self.net_reset = net_smallbytearray(self.inst.GUID, "reset", "resetdirty" )
 	self.net_widget = net_string(self.inst.GUID, "widget", "widgetdirty" )
 	self.net_update = net_smallbyte(self.inst.GUID, "update", "updatedirty" )
 	self.net_limit = net_smallbyte(self.inst.GUID, "limit", "limitdirty" )
-	self.net_mode = net_tinybyte(self.inst.GUID, "mode", "modedirty" )	
-	
+	self.net_mode = net_tinybyte(self.inst.GUID, "mode", "modedirty" )
+
 	if TheWorld.ismastersim then
 		self.OnEatfn = function(player,data) self:OnEat(player,data) end
 		self.OnNextSeasonfn = function() self:OnNextSeason() end
-		self.OnNextCyclefn = function() self:OnNextCycle() end		
-		self.inst:ListenForEvent("oneat", self.OnEatfn)		
-		self.inst:WatchWorldState("season", self.OnNextSeasonfn)   
-		self.inst:WatchWorldState("cycles", self.OnNextCyclefn)   
+		self.OnNextCyclefn = function() self:OnNextCycle() end
+		self.inst:ListenForEvent("oneat", self.OnEatfn)
+		self.inst:WatchWorldState("season", self.OnNextSeasonfn)
+		self.inst:WatchWorldState("cycles", self.OnNextCyclefn)
 		self.inst:StartUpdatingComponent(self)
-		self.inst:DoTaskInTime(1.5, function() 
-			if self.menu[1] == nil then 
+		self.inst:DoTaskInTime(1.5, function()
+			if self.menu[1] == nil then
 				self.Reset = true
-				self:ResetPlayerTable() 
-			end 
+				self:ResetPlayerTable()
+			end
 		end)
 	else
-		self.inst:ListenForEvent("menudirty", OnMenuDirty)        
-		self.inst:ListenForEvent("progressdirty", OnProgressDirty)  
-		self.inst:ListenForEvent("widgetdirty", OnWidgetDirty) 
-		self.inst:ListenForEvent("updatedirty", OnUpdateDirty) 
-		self.inst:ListenForEvent("resetdirty", OnResetDirty) 	
-		self.inst:ListenForEvent("limitdirty", OnLimitDirty) 	
-		self.inst:ListenForEvent("modedirty", OnModeDirty) 		
+		self.inst:ListenForEvent("menudirty", OnMenuDirty)
+		self.inst:ListenForEvent("progressdirty", OnProgressDirty)
+		self.inst:ListenForEvent("widgetdirty", OnWidgetDirty)
+		self.inst:ListenForEvent("updatedirty", OnUpdateDirty)
+		self.inst:ListenForEvent("resetdirty", OnResetDirty)
+		self.inst:ListenForEvent("limitdirty", OnLimitDirty)
+		self.inst:ListenForEvent("modedirty", OnModeDirty)
 	end
 end)
 
@@ -222,18 +222,18 @@ end
 function PickyEater:ResetPlayerTable()
 	local tempFoodList = {}
 	local seed = os.time()
-	
+
 	self.food = {}
-	
+
 	for k,v in pairs(allFood) do
 		self.food[k] = v
 	end
-	
+
 	self.menu = {}
 	self.progress = {}
 	self.dayCount = 0
 	self.limit = 30
-	
+
 	if self.menuType == 1 or self.menuType == 2 or self.menuType == 3 then
 		if self.inst.prefab == "wathgrithr" then
 			for k,v in pairs(wigfridCrockpot) do
@@ -264,7 +264,7 @@ function PickyEater:ResetPlayerTable()
 			if self.caves % 2 == 0 then
 				table.insert(tempFoodList,"unagi")
 			end
-		end	
+		end
 		Shuffle(tempFoodList,seed)
 	else
 		if self.inst.prefab == "wathgrithr" then
@@ -278,11 +278,12 @@ function PickyEater:ResetPlayerTable()
 				table.insert(tempFoodList,"unagi")
 			end
 			if self.caves % 2 == 0 and self.easy %2 == 0 then
-				table.insert(tempFoodList,"minotaurhorn")
-			end	
+				-- Disabled for now, as getting new ones is absurdly difficult.
+				-- table.insert(tempFoodList,"minotaurhorn")
+			end
 			if self.longterm % 2 == 0 and self.easy %2 == 0 then
 				table.insert(tempFoodList,"deerclops_eyeball")
-			end				
+			end
 			if self.longterm % 2 == 0 then
 				for k,v in pairs(wigfridLongterm) do
 					table.insert(tempFoodList,v)
@@ -292,7 +293,7 @@ function PickyEater:ResetPlayerTable()
 				for k,v in pairs(wigfridCave) do
 					table.insert(tempFoodList,v)
 				end
-			end			
+			end
 		elseif self.inst.prefab == "wurt" then
 			for k,v in pairs(wurtFood) do
 				table.insert(tempFoodList,v)
@@ -325,26 +326,27 @@ function PickyEater:ResetPlayerTable()
 				end
 			end
 			if self.caves % 2 == 0 and self.easy %2 == 0 then
-				table.insert(tempFoodList,"minotaurhorn")
-			end	
+				-- Disabled for now, as getting new ones is absurdly difficult.
+				-- table.insert(tempFoodList,"minotaurhorn")
+			end
 			if self.longterm % 2 == 0 and self.easy %2 == 0 then
 				table.insert(tempFoodList,"deerclops_eyeball")
-			end	
+			end
 			--[[
 			if self.inst.prefab == "wx78" then
 				table.insert(tempFoodList,"gears")
 			end
 			--]]
 		end
-		Shuffle(tempFoodList,seed)	
+		Shuffle(tempFoodList,seed)
 	end
-	
+
 	if self.menuType == 2 or self.menuType == 4 then
-		self.limit = 10	
+		self.limit = 10
 	elseif self.menuType == 5 or (self.menuType == 3 and self.inst.prefab ~= "wathgrithr") then
-		self.limit = 20	
+		self.limit = 20
 	elseif self.menuType == 6 and self.inst.prefab ~= "wathgrithr" then
-		self.limit = 30	
+		self.limit = 30
 	else
 		self.limit = #tempFoodList
 		if self.limit > 30 then
@@ -353,19 +355,19 @@ function PickyEater:ResetPlayerTable()
 	end
 
 	self.net_limit:set(self.limit)
-	
+
 	for i,v in ipairs(tempFoodList) do
-		if self.limit >= i then 
+		if self.limit >= i then
 			table.insert(self.menu,v)
 			self.progress[i] = 0
 		end
 	end
-	for i,v in ipairs(self.menu) do	
+	for i,v in ipairs(self.menu) do
 		self.food[v] = false
 	end
-	self:EaterChange(self.food)		
+	self:EaterChange(self.food)
 	local tempMenu = {}
-	
+
 	for k,v in pairs(self.menu) do
 		table.insert(tempMenu,v)
 	end
@@ -392,7 +394,7 @@ end
 
 function PickyEater:RebuildPlayerTable()
 	local tempMenu = {}
-	
+
 	for k,v in pairs(self.menu) do
 		table.insert(tempMenu,v)
 	end
@@ -432,13 +434,13 @@ function PickyEater:OnEat(player, data)
 end
 
 function PickyEater:OnWin()
-	local mode = ""	
+	local mode = ""
 	if self.mode == 1 then
 		mode = "cycle"
 	elseif self.mode == 2 then
-		mode = "yearly"		
+		mode = "yearly"
 	elseif self.mode == 3 then
-		mode = "seasonal"		
+		mode = "seasonal"
 	end
 	if win_message then
 		TheNet:Say(("PickyEater: " .. self.inst.name .. " has completed their " .. mode .. " menu! Congrats!  \164\0\0"),false)
@@ -456,31 +458,31 @@ function PickyEater:OnWinDirty()
 	local caves = ""
 	local rare = ""
 	local normal = ""
-		
+
 	if self.menuType == 1 then
 		menuType = "all crockpot foods "
-	elseif self.menuType == 2 then 
-		menuType = "10 crockpot foods "		
-	elseif self.menuType == 3 then 
-		menuType = "20 crockpot foods "		
-	elseif self.menuType == 4 then 
-		menuType = "30 crockpot foods "		
-	elseif self.menuType == 5 then 
-		menuType = "10 random foods "		
-	elseif self.menuType == 6 then 
-		menuType = "20 random foods "		
+	elseif self.menuType == 2 then
+		menuType = "10 crockpot foods "
+	elseif self.menuType == 3 then
+		menuType = "20 crockpot foods "
+	elseif self.menuType == 4 then
+		menuType = "30 crockpot foods "
+	elseif self.menuType == 5 then
+		menuType = "10 random foods "
+	elseif self.menuType == 6 then
+		menuType = "20 random foods "
 	elseif self.menuType == 7 then
-		menuType = "30 random foods "		
+		menuType = "30 random foods "
 	end
-	
+
 	if self.mode == 1 then
 		mode = "cycle mode "
 	elseif self.mode == 2 then
-		mode = "yearly mode "		
+		mode = "yearly mode "
 	elseif self.mode == 3 then
-		mode = "seasonal mode "		
+		mode = "seasonal mode "
 	end
-	
+
 	if self.easy %2 == 0 then
 		easy = " easy"
 		And = " and"
@@ -489,7 +491,7 @@ function PickyEater:OnWinDirty()
 	if self.longterm %2 == 0 then
 		longterm = " longterm"
 		And = " and"
-	end	
+	end
 	if self.caves %2 == 0 then
 		caves = " cave"
 		And = " and"
@@ -500,7 +502,7 @@ function PickyEater:OnWinDirty()
 	if self.rare %2 == 1 and self.caves %2 == 1 and self.easy %2 == 1 and self.longterm %2 == 1 then
 		normal = " normal"
 	end
-	
+
 	self.inst.HUD.controls.foodMenu:OnWinMessage(name,And,menuType,mode,easy,longterm,caves,rare,normal)
 end
 
@@ -518,7 +520,7 @@ function PickyEater:CheckList()
 		end
 		self.Reset = true
 		self:ResetPlayerTable()
-	end		
+	end
 end
 
 function PickyEater:OnNextCycle()
@@ -538,7 +540,7 @@ function PickyEater:OnNextSeason()
 			self:OnWin()
 		end
 		self.Reset = true
-		self:ResetPlayerTable() 
+		self:ResetPlayerTable()
 	end
 end
 
