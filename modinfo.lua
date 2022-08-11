@@ -1,6 +1,6 @@
-name = "Eat Your Veggies! (fix)"
+name = "Eat Your Veggies! (Praash)"
 description = "Diet restriction minigame."
-author = "Joeshmocoolstuff" 
+author = "Joeshmocoolstuff, azukun, Praash, Mrklli"
 version = "1.7.1"
 api_version = 10
 
@@ -31,7 +31,7 @@ configuration_options =
 		hover = "The keyboard toggle to open/close the board",
         options = keyslist,
         default = 98, --B
-    }, 
+    },
 		{
         name = "widg_loc",
         label = "Board Location",
@@ -41,7 +41,7 @@ configuration_options =
 			{description = "Bottom", data = 2},
 		},
 		default = 1,
-    }, 
+    },
 	{
         name = "picky_eater",
         label = "Food Restriction",
@@ -52,7 +52,7 @@ configuration_options =
 			{description = "Off", data = false},
 		},
 		default = true,
-    }, 
+    },
 	{
         name = "year_length",
         label = "Length of Year",
@@ -67,7 +67,7 @@ configuration_options =
 			{description = "70", data = 70},
 		},
 		default = 70,
-    }, 
+    },
 	{
         name = "client_reset",
         label = "Non-admin Menu Reset",
@@ -78,7 +78,7 @@ configuration_options =
 			{description = "No", data = false},
 		},
 		default = true,
-    }, 
+    },
 	{
         name = "win_message",
         label = "Win Message",
@@ -89,7 +89,7 @@ configuration_options =
 			{description = "No", data = false},
 		},
 		default = true,
-    }, 
+    },
 	{
         name = "default_mode",
         label = "Default Mode",
@@ -101,7 +101,7 @@ configuration_options =
 			{description = "Cycle", data = 1},
 		},
 		default = 1,
-    }, 
+    },
 	{
         name = "default_menuType",
         label = "Default Menu Type",
@@ -116,7 +116,7 @@ configuration_options =
 			{description = "30 rand food", data = 6},
 		},
 		default = 3,
-    }, 
+    },
 	{
         name = "default_easy",
         label = "Default Hard Items",
@@ -127,7 +127,7 @@ configuration_options =
 			{description = "Yes", data = 2},
 		},
 		default = 1,
-    }, 
+    },
 	{
         name = "default_rare",
         label = "Default Rare Items",
@@ -138,7 +138,7 @@ configuration_options =
 			{description = "Yes", data = 2},
 		},
 		default = 1,
-    }, 
+    },
 	{
         name = "default_longterm",
         label = "Default Longterm Items",
@@ -149,7 +149,7 @@ configuration_options =
 			{description = "Yes", data = 2},
 		},
 		default = 1,
-    }, 
+    },
 	{
         name = "default_caves",
         label = "Default Cave Items",
@@ -160,5 +160,5 @@ configuration_options =
 			{description = "Yes", data = 2},
 		},
 		default = 1,
-    }, 
+    },
 }
