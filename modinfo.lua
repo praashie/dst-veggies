@@ -161,4 +161,26 @@ configuration_options =
 		},
 		default = 1,
     },
+	{
+        name = "allow_seasonal_treats",
+        label = "Allow Seasonal Treats",
+		hover = "Forgive eating halloween/winter candy, cookie crumbs.",
+		options =
+		{
+			{description = "No", data = false},
+			{description = "Yes", data = true},
+		},
+		default = false,
+    },
+	{
+        name = "allow_glommer_goop",
+        label = "Allow Glommer's Goop",
+		hover = "Forgive eating Glommer's goop.",
+		options =
+		{
+			{description = "No", data = false},
+			{description = "Yes", data = true},
+		},
+		default = false,
+    },
 }

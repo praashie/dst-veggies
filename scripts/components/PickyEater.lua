@@ -195,16 +195,30 @@ function PickyEater:OnLoad(data)
 	end
 end
 
-function PickyEater:PrefersToEat(inst)
-    return not (inst.prefab == "winter_food4" and self.inst:HasTag("player"))
-        and self:TestFood(inst, self.preferseating)
-end
-
 function PickyEater:EaterChange(array)
 	if picky_eater and self.inst.components.eater then
-		local _PrefersToEat = self.inst.components.PickyEater.PrefersToEat
+		local game_eater = self.inst.components.eater
+		
+		-- Save original PrefersToEat function once.
+		if game_eater._PickyEater_Original_PrefersToEat == nil then
+			game_eater._PickyEater_Original_PrefersToEat = game_eater.PrefersToEat
+		end
+		
 		self.inst.components.eater.PrefersToEat = function(self, food)
-			return _PrefersToEat(self, food) and not array[food.prefab]
+			local food_allowed = false
+
+			-- This food is explicitly allowed.
+			-- New foods unknown to this mod would be nil.
+			if array[food.prefab] == false then
+				food_allowed = true
+			elseif picky_eater_allow_seasonal_treats then
+				if food:HasTag("pre-preparedfood") or food:HasTag("crumbs") then
+					food_allowed = true
+				end
+			elseif picky_eater_allow_glommer_goop and food.prefab == "glommerfuel" then
+					food_allowed = true
+            end
+			return food_allowed and self:_PickyEater_Original_PrefersToEat(food)
 		end
 	end
 end

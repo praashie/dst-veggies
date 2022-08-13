@@ -29,6 +29,10 @@ GLOBAL.client_reset = GetConfig("client_reset", true)
 GLOBAL.win_message = GetConfig("win_message", true)
 GLOBAL.year_length = GetConfig("year_length", 70)
 
+GLOBAL.picky_eater_allow_seasonal_treats = GetConfig("allow_seasonal_treats", false)
+GLOBAL.picky_eater_allow_glommer_goop = GetConfig("allow_glommer_goop", false)
+
+
 local menuShow = true
 local FoodMenu = GLOBAL.require("widgets/FoodMenu")
 
